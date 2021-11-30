@@ -1,57 +1,57 @@
-/* eslint-disable */
-import logo from './logo.svg';
-import React, { useState } from 'react';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  let textColor = {color: 'blue', fontSize: '40px'}
+  let [ title1, titleUpdate1 ] = useState([{area:'인천', date: '1993-03-01'}, 
+                                            {area:'서울', date: '1994-02-20'},
+                                            {area:'여수', date: '2021-10-01'}]);
+  let [likeNum, likeNumUpdate] = useState(0)         
+  let [flag, flagUpdate] = useState(false)                                
+  
+  // state를 사용해서 내용 바꿔보기
+  // let [chngeWord, chngeWordUpdate] = useState(['강릉', '부산', '목포'])
 
-  // let msg = 'story'
-  // let reactStyle= {color: 'blue', fontSize: '30px'}
-  // function test () {
-  //   return 100
+  // function changeWord () {
+  //   let tempList = [...title1]
+  //   tempList[0].area = chngeWord[0]
+  //   tempList[1].area = chngeWord[1]
+  //   tempList[2].area = chngeWord[2]
+  //   titleUpdate1(tempList)
   // }
-  let [title, titleUpdate] = useState(['인천 논현동에서', '인천 간석동에서', '서울에서']);
-  let [numState, numUpdate] = useState(0); 
-
-  function tiUpdt () {
-    // titleUpdate(['논현', '간석', '서울'])
-    let test = [...title]
-    test[0] = '으하하하'
-    test = test.sort()
-    titleUpdate(test)
-  }
 
   return (
     <div className="App">
-      <div className="black-nav">
-        <div>개발 Blog</div> 
-      </div> 
-      {/* <h4> {test()} </h4> 
-      <div style={ reactStyle }> react에서의 style!</div> */}
-      <button onClick={ () => { titleUpdate(['논현', '간석', '서울']) }}>titleUpdate Button!!11111</button><br/>
-      <button onClick={ tiUpdt }>titleUpdate Button!!2222</button>
-      <div className="list">
-        <h3>{ title[0] } <span onClick={ () =>{ numUpdate(numState++)}}>👍</span>{ numState }</h3>
-        <p>2021년 1월 1일</p>
+      <div className="black-nav" style={textColor}>
+        <div>REACT BLOG</div>
+      </div>
+      {/* <button onClick={ changeWord }> 글씨 바꾸기 Btn</button> */}
+      <div className="list" onClick={ () => { flagUpdate(!flag) } }>
+        <h3 > { title1[0].area } <span onClick={ () => { likeNumUpdate(likeNum + 1) }}>👍</span> { likeNum } </h3> 
+        <p> { title1[0].date } </p>
         <hr/>
       </div>
       <div className="list">
-        <h3>{ title[1] } </h3>
-        <p>2021년 1월 1일</p>
+        <h3> { title1[1].area } </h3>
+        <p> { title1[1].date } </p>
         <hr/>
       </div>
       <div className="list">
-        <h3>{ title[2] } </h3>
-        <p>2021년 1월 1일</p>
+        <h3> { title1[2].area } </h3>
+        <p> { title1[2].date } </p>
         <hr/>
       </div>
-      <div className="modal">
+
+      {/* 컴포넌트로 만들기 */}
+      {/* <div className="modal">
         <h2>제목</h2>
         <p>날짜</p>
         <p>상세내용</p>
-      </div>
+        </div> */}
 
-      <Modal />
+      {
+        flag === true ? <Modal></Modal> : null
+      }
     </div>
   );
 }
@@ -59,12 +59,11 @@ function App() {
 function Modal () {
   return (
     <div className="modal">
-        <h2>제목1</h2>
-        <p>날짜1</p>
-        <p>상세내용1</p>
-    </div>
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
+  </div>
   )
 }
-
 
 export default App;
