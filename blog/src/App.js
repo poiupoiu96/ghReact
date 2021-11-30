@@ -58,6 +58,7 @@ function App() {
 
 function Modal () {
   return (
+    // git
     <div className="modal">
       <h2>제목</h2>
       <p>날짜</p>
